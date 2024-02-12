@@ -21,16 +21,29 @@ public class Exercise2 {
         // boolean resultado = simetrica(matriz);
         // System.out.println(resultado);
 
-        double [] [] matriz = new double[5][5];
-        double [][] matrizLlena = fullMatrix(matriz.length, matriz[0].length, matriz, 0, 0);
-        for (double[] doubles : matrizLlena) {
+        // double [] [] matriz = new double[10][10];
+        // double [] [] matrizLlena = fullMatrix(0, 0, matriz);
+
+        int [] [] matrizSebas = new int[5][5];
+        int [] [] matrizSebasFull = crearMatriz(0, 0, 0, matrizSebas);
+
+        for (int[] enteros : matrizSebasFull) {
+            System.out.print("|");
+            for (int y = 0; y < enteros.length; y++) {
+                System.out.print(enteros[y]);
+                if (y != enteros.length - 1) System.out.print("\t");
+            }
+            System.out.println("|");
+        }
+
+        /*for (double[] doubles : matrizLlena) {
             System.out.print("|");
             for (int y = 0; y < doubles.length; y++) {
                 System.out.print(doubles[y]);
                 if (y != doubles.length - 1) System.out.print("\t");
             }
             System.out.println("|");
-        }
+        }*/
     }
 
     static boolean busqueda(int[] arreglo, int dato)
@@ -62,24 +75,46 @@ public class Exercise2 {
         return auxiliar;
     }
 
-    public static double [][] fullMatrix(int fila, int columna, double [][] matriz, int countRow, int countColumn){
-        if(countColumn < columna && countRow < fila && matriz[4][1] == 0){
-           matriz[countRow] [0] = 4;
-           countRow += 1;
-           return fullMatrix(fila, columna, matriz, countRow, countColumn);
-        }else {
-            countRow = 0;
+    public static double [][] fullMatrix(int i, int j, double [][] matriz){
+
+        if (i == (matriz.length - 1) && j == (matriz[0].length - 1)){
+            return matriz;
         }
 
-        if(matriz[0][4] == 0){
-            matriz[0][countColumn] = 4;
-            countColumn += 1;
-            return fullMatrix(fila, columna, matriz, countRow, countColumn);
+        if(i!=j){
+            int num = (int) (Math.random() * 10) + 1;
+            matriz[i][j] = num;
+            matriz[j][i] = num;
         }
 
+        if(j == matriz[0].length - 1){
+            return fullMatrix(i+1, 0, matriz);
+        }
 
+        return fullMatrix(i, j+1, matriz);
+    }
 
-        return matriz;
+    public static int[][] crearMatriz (int i, int j, int e, int[][] matriz)
+    {
+        if (i==matriz.length- 1 && j==matriz[0].length -1)
+        {
+            return matriz;
+        }
+
+        if (j!=i)
+        {
+            int num = (int)(Math.random() * 9) + 1;
+            matriz[i][j] = num;
+            matriz[j][i] = num;
+        }
+
+        if (j==matriz[0].length - 1)
+        {
+            e += 1;
+            return crearMatriz (i + 1, e, e, matriz);
+        }
+
+        return crearMatriz (i, j + 1, e, matriz);
     }
 
 }
