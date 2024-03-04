@@ -1,6 +1,6 @@
-package iniciando;
+package recursividad;
 
-public class Exercise3 {
+public class Recursividad1 {
 
     public static void main(String[] args) {
         int n = 21;
@@ -21,7 +21,6 @@ public class Exercise3 {
     - Escriba algoritmo iterativo que permita llenar una matriz de n x n en forma de espiral,
      tal como se muestra a continuación.
      */
-
     public static int [] [] llenarMatrizEspiral (int[][] matriz, int filaInicio, int filaFin, int colInicio,
                                                  int colFin, int num){
 
